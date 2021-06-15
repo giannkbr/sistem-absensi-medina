@@ -53,6 +53,58 @@ class Absen_model extends CI_Model
 
 		return $this->db->get();
 	}
+
+	public function update_absen($where, $table)
+	{
+		return $this->db->get_where($table, $where);
+	}
+
+	public function update_data($where, $data, $table)
+	{
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
+
+	public function cek_id($username)
+	{
+		$query_str =
+
+			$this->db->where('username', $username)
+			->get('karyawan');
+		if ($query_str->num_rows() > 0) {
+			return $query_str->row();
+		} else {
+			return false;
+		}
+	}
+
+	public function cek_kehadiran($username, $tgl)
+	{
+		$query_str =
+
+			$this->db->where('username', $username)
+			->where('tanggal', $tgl)->get('absen');
+		if ($query_str->num_rows() > 0) {
+			return $query_str->row();
+		} else {
+			return false;
+		}
+	}
+
+	public function absen_masuk($data)
+	{
+		return $this->db->insert('absen', $data);
+	}
+
+	public function absen_pulang($username, $data)
+	{
+		$tgl = date('Y-m-d');
+		return
+
+			$this->db->where('username', $username)
+			->where('tanggal', $tgl)
+			->update('absen', $data);
+	}
 }
 
 /* End of file ModelName.php */

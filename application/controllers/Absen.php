@@ -108,6 +108,70 @@ class Absen extends CI_Controller
 
 		$this->load->view('templates/app', $data);
 	}
+
+	function cek_id()
+	{
+		$result_code = $this->input->post('username');
+		$tgl = date('Y-m-d');
+		$jam_msk = date('H:i:s');
+		$jam_klr = date('H:i:s');
+		$cek_id = $this->absen->cek_id($result_code);
+		$cek_kehadiran = $this->absen->cek_kehadiran($result_code, $tgl);
+		if (!$cek_id) {
+			$this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
+			redirect($_SERVER['HTTP_REFERER']);
+		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && $cek_kehadiran->status == 'masuk' && date('H:i:s') >= '16:00:00') {
+			$data = array(
+				'jam_keluar' => $jam_klr,
+				'status' => 'Sudah Absen Pulang',
+			);
+			$this->absen->absen_pulang($result_code, $data);
+			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Pulang!", "success");');
+			redirect($_SERVER['HTTP_REFERER']);
+		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar != '00:00:00' && $cek_kehadiran->status == 'pulang') {
+			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Pulang!", "warning");');
+			redirect($_SERVER['HTTP_REFERER']);
+			return false;
+		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00') {
+			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
+			redirect($_SERVER['HTTP_REFERER']);
+			return false;
+		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '07:00:00' && $cek_kehadiran->jam_keluar == '17:00:00' && date('H:i:s') >= date('H:i:s', strtotime('09:00:00'))) {
+			$data = array(
+				'username' => $result_code,
+				'tanggal' => $tgl,
+				'jam_masuk' => $jam_msk,
+				'status' => 'Absen Terlambat',
+			);
+			$this->absen->absen_masuk($data);
+			$this->session->set_flashdata('message', 'swal("Warning!", "Absen Terlambat!", "warning");');
+			redirect($_SERVER['HTTP_REFERER']);;
+		} else {
+			$data = array(
+				'username' => $result_code,
+				'tanggal' => $tgl,
+				'jam_masuk' => $jam_msk,
+				'status' => 'Sudah Absen Masuk',
+			);
+			$this->absen->absen_masuk($data);
+			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Masuk!", "success");');
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+	}
+
+	public function scanqr()
+	{
+		$data = [
+			'title' => 'Scan QR Code',
+			'page' => 'admin/absensi/scanqrcode',
+			'subtitle' => 'Admin',
+			'subtitle2' => 'Data Absensi',
+			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
+			'karyawan' =>  $this->karyawan->tampil_data()->result_array()
+		];
+
+		$this->load->view('templates/app', $data, FALSE);
+	}
 }
 
 /* End of file Absen.php */

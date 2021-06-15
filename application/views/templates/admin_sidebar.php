@@ -29,7 +29,7 @@
 									<li><a href="<?= base_url('data-absensi'); ?>">Data Absensi</a></li>
 									<li><a href="<?= base_url('rekap-absensi'); ?>">Rekap Absensi</a></li>
 									<li><a href="<?= base_url(''); ?>">Cetak QR Code</a></li>
-									<li><a href="<?= base_url(''); ?>">Scan QR Code</a></li>
+									<li><a href="<?= base_url('scan-qr-code'); ?>">Scan QR Code</a></li>
 								</ul>
 							</li>
 						</ul>

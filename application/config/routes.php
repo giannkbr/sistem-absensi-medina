@@ -68,3 +68,4 @@ $route['data-absensi'] = 'Absen';
 $route['rekap-absensi'] = 'Absen/rekapAbsensi';
 $route['rekap-absensi-detail'] = 'Absen/rekapAbsensiDetail';
 $route['rekap-absensi-karyawan-filter'] = 'Absen/rekapAbsensiPerOrangFilter';
+$route['scan-qr-code'] = 'Absen/scanqr';

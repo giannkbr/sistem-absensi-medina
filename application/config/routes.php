@@ -63,28 +63,8 @@ $route['data-karyawan'] = 'Karyawan';
 $route['add-karyawan'] = 'Karyawan/addkaryawan';
 $route['edit-karyawan'] = 'Karyawan/editkaryawan';
 
-// Master Cuti 
-$route['data-cuti'] = 'Cuti';
-$route['terima-cuti'] = 'Cuti/cuti_terima/';
-$route['tolak-cuti'] = 'Cuti/cuti_tolak/';
-
-$route['data-cuti-karyawan'] = 'Cuti/cuti_karyawan';
-$route['add-cuti-karyawan'] = 'Cuti/cuti_add';
-
 // Master Absensi
 $route['data-absensi'] = 'Absen';
-
-// Master Overtime 
-$route['data-overtime'] = 'Overtime';
-$route['terima-overtime'] = 'Overtime/overtime_terima/';
-$route['tolak-overtime'] = 'Overtime/overtime_tolak/';
-
-$route['data-overtime-karyawan'] = 'Overtime/overtime_karyawan';
-$route['add-overtime-karyawan'] = 'Overtime/overtime_add';
-
-// Master Absensi User
-$route['data-absensi-user'] = 'Absen/getAbsenId/';
-
-// Master Laporan
-$route['rekap-absensi'] = 'Laporan';
-$route['rekap-absensi-filter'] = 'Laporan/laporanfilter';
+$route['rekap-absensi'] = 'Absen/rekapAbsensi';
+$route['rekap-absensi-detail'] = 'Absen/rekapAbsensiDetail';
+$route['rekap-absensi-karyawan-filter'] = 'Absen/rekapAbsensiPerOrangFilter';

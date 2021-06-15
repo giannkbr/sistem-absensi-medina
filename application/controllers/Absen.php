@@ -136,7 +136,7 @@ class Absen extends CI_Controller
 			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
 			redirect($_SERVER['HTTP_REFERER']);
 			return false;
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '07:00:00' && $cek_kehadiran->jam_keluar == '17:00:00' && date('H:i:s') >= date('H:i:s', strtotime('09:00:00'))) {
+		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >= date('H:i:s', strtotime('09:00:00'))) {
 			$data = array(
 				'username' => $result_code,
 				'tanggal' => $tgl,
@@ -165,10 +165,46 @@ class Absen extends CI_Controller
 			'title' => 'Scan QR Code',
 			'page' => 'admin/absensi/scanqrcode',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Data Absensi',
+			'subtitle2' => 'Scan QR Code',
 			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
-			'karyawan' =>  $this->karyawan->tampil_data()->result_array()
+			'karyawan' =>  $this->karyawan->tampilData()->result_array()
 		];
+
+		$this->load->view('templates/app', $data, FALSE);
+	}
+
+	public function ambilqr()
+	{
+		$data = [
+			'title' => 'Ambil QR Code',
+			'page' => 'admin/absensi/ambilqr',
+			'subtitle' => 'Admin',
+			'subtitle2' => 'Ambil QR Code',
+			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
+			'karyawan' => $this->karyawan->tampilData()->result_array()
+		];
+
+		$this->load->view('templates/app', $data, FALSE);
+	}
+
+	public function cetakqr()
+	{
+		$data = [
+			'title' => 'Cetak QR Code',
+			'page' => 'admin/absensi/cetakqr',
+			'subtitle' => 'Admin',
+			'subtitle2' => 'Cetak QR Code',
+			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
+			'karyawan' =>  $this->karyawan->karyawanWhere(['nip' => $this->uri->segment(3)])->row_array()
+		];
+
+		$this->load->library('ciqrcode');
+
+		$params['data'] = $data['karyawan']['username'];
+		$params['level'] = 'H';
+		$params['size'] = 10;
+		$params['savename'] = FCPATH . "assets/img/qrcode/" . $data['karyawan']['username'] . 'code.png';
+		$this->ciqrcode->generate($params);
 
 		$this->load->view('templates/app', $data, FALSE);
 	}

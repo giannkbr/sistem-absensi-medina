@@ -70,7 +70,7 @@ class Absen_model extends CI_Model
 		$query_str =
 
 			$this->db->where('username', $username)
-			->get('karyawan');
+			->get('users');
 		if ($query_str->num_rows() > 0) {
 			return $query_str->row();
 		} else {

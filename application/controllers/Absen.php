@@ -2,7 +2,7 @@
 
 
 defined('BASEPATH') or exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class Absen extends CI_Controller
 {
 
@@ -117,47 +117,72 @@ class Absen extends CI_Controller
 		$jam_klr = date('H:i:s');
 		$cek_id = $this->absen->cek_id($result_code);
 		$cek_kehadiran = $this->absen->cek_kehadiran($result_code, $tgl);
-		if (!$cek_id) {
-			$this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
-			redirect($_SERVER['HTTP_REFERER']);
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && $cek_kehadiran->status == 'masuk' && date('H:i:s') >= '16:00:00') {
-			$data = array(
-				'jam_keluar' => $jam_klr,
-				'status' => 'Sudah Absen Pulang',
-			);
-			$this->absen->absen_pulang($result_code, $data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Pulang!", "success");');
-			redirect($_SERVER['HTTP_REFERER']);
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar != '00:00:00' && $cek_kehadiran->status == 'pulang') {
-			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Pulang!", "warning");');
-			redirect($_SERVER['HTTP_REFERER']);
-			return false;
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00') {
-			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
-			redirect($_SERVER['HTTP_REFERER']);
-			return false;
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >= date('H:i:s', strtotime('09:00:00'))) {
-			$data = array(
-				'username' => $result_code,
-				'tanggal' => $tgl,
-				'jam_masuk' => $jam_msk,
-				'status' => 'Absen Terlambat',
-			);
-			$this->absen->absen_masuk($data);
-			$this->session->set_flashdata('message', 'swal("Warning!", "Absen Terlambat!", "warning");');
-			redirect($_SERVER['HTTP_REFERER']);;
-		} else {
-			$data = array(
-				'username' => $result_code,
-				'tanggal' => $tgl,
-				'jam_masuk' => $jam_msk,
-				'status' => 'Sudah Absen Masuk',
-			);
-			$this->absen->absen_masuk($data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Masuk!", "success");');
-			redirect($_SERVER['HTTP_REFERER']);
-		}
-	}
+
+	if (!$cek_id) {
+            $this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
+            redirect($_SERVER['HTTP_REFERER']);
+
+        }
+
+         elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >='16:00:00' ) {
+            $data = array(
+                'jam_keluar' => $jam_klr,
+                'status' => 'pulang',
+            );
+            $this->absen->absen_pulang($result_code, $data);
+            $this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Pulang!", "success");');
+            redirect($_SERVER['HTTP_REFERER']);
+
+        } elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar != '00:00:00' && $cek_kehadiran->status == 'pulang') {
+           $this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Pulang!", "warning");');
+            redirect($_SERVER['HTTP_REFERER']);
+            return false;
+
+        } elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') <='16:00:00') {
+            $this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
+            redirect($_SERVER['HTTP_REFERER']);
+            return false;
+        }
+
+        // elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00'&& date('H:i:s') > '09:00:00' && date('H:i:s') < '16:00:00' ) {
+        //     $data = array(
+        //         'username' => $result_code,
+        //         'tanggal' => $tgl,
+        //         'jam_masuk' => $jam_msk,
+        //         'status' => 'Terlambat',
+        //     );
+        //     $this->M_absen->absen_masuk($data);
+        //     $this->session->set_flashdata('messageAlert', $this->messageAlert('warning', 'Anda Terlambat'));
+        //     redirect($_SERVER['HTTP_REFERER']);;
+        // }
+
+    
+        else {
+            if (date('H:i:s') >= '09:00:00') {
+            $alert = 'Absen terlambat';
+            
+            $data = array(
+                'username' => $result_code,
+                'tanggal' => $tgl,
+                'jam_masuk' => $jam_msk,
+                'status' => 'terlambat',
+            );
+            }
+            else{
+                $alert='Absen Masuk';
+                $data = array(
+                'username' => $result_code,
+                'tanggal' => $tgl,
+                'jam_masuk' => $jam_msk,
+                'status' => 'masuk',
+            );
+            }
+            $this->absen->absen_masuk($data);
+            $this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil ' . $alert . '", "success");');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
 
 	public function scanqr()
 	{

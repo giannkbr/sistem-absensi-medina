@@ -9,7 +9,7 @@
 				<div>
 					<h5 class="font-16">Jumlah Karyawan</h5>
 				</div>
-				<h3 class="mt-4">25</h3>
+				<h3 class="mt-4"><?= $karyawan ?></h3>
 			</div>
 		</div>
 	</div>

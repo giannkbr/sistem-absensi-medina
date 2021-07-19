@@ -96,7 +96,7 @@ class Karyawan extends CI_Controller
 			'title' => 'Data Karyawan',
 			'page' => 'admin/karyawan/datakaryawan',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Data Daryawan',
+			'subtitle2' => 'Data karyawan',
 			'data' => $this->admin->karyawan()->result()
 		];
 

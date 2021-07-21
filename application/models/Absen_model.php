@@ -69,8 +69,8 @@ class Absen_model extends CI_Model
 	{
 		$query_str =
 
-			$this->db->where('username', $username)
-			->get('users');
+		$this->db->where('username', $username)
+		->get('users');
 		if ($query_str->num_rows() > 0) {
 			return $query_str->row();
 		} else {
@@ -82,8 +82,8 @@ class Absen_model extends CI_Model
 	{
 		$query_str =
 
-			$this->db->where('username', $username)
-			->where('tanggal', $tgl)->get('absen');
+		$this->db->where('username', $username)
+		->where('tanggal', $tgl)->get('absen');
 		if ($query_str->num_rows() > 0) {
 			return $query_str->row();
 		} else {
@@ -101,10 +101,25 @@ class Absen_model extends CI_Model
 		$tgl = date('Y-m-d');
 		return
 
-			$this->db->where('username', $username)
-			->where('tanggal', $tgl)
-			->update('absen', $data);
+		$this->db->where('username', $username)
+		->where('tanggal', $tgl)
+		->update('absen', $data);
 	}
+
+	public function joinAll($where)
+	{
+		$this->db->select('*');
+		$this->db->from('absen a'); 
+		$this->db->join('users b', 'b.username=a.username');
+		$this->db->join('jabatan c', 'c.jabatan_id=b.jabatan_id');
+		$this->db->where('c.jabatan_id',$where);
+		$this->db->order_by('a.tanggal','desc');         
+		return $this->db->get(); 
+	}
+
+	
+
+
 }
 
 /* End of file ModelName.php */

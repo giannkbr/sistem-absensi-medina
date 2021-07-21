@@ -8,7 +8,10 @@
 							<th>NIP</th>
 							<th>Nama Lengkap</th>
 							<th>Username</th>
-							<th>Opsi</th>
+							<th>Tanggal</th>
+							<th>Jam Masuk</th>
+							<th>Jam Keluar</th>
+							<th>Detail</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -17,6 +20,9 @@
 								<td><?= $k['nip'] ?></td>
 								<td><?= $k['nama'] ?></td>
 								<td><?= $k['username'] ?></td>
+								<td><?= $k['tanggal'] ?></td>
+								<td><?= $k['jam_masuk'] ?></td>
+								<td><?= $k['jam_keluar'] ?></td>
 								<td><a href="<?php echo site_url('Absen/rekapAbsensiPerKaryawan/' . $k['username']); ?>" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Lihat</a></td>
 							</tr>
 

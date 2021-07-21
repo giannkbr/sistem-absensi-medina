@@ -19,6 +19,13 @@ class Karyawan_model extends CI_Model
 	{
 		return $this->db->get('jabatan');
 	}
+
+	public function hitungKaryawan($where)
+	{
+		$this->db->where($where);
+		return $this->db->count_all_results('users');
+
+	}
 }
 
 /* End of file Karyawan_model.php */

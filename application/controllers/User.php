@@ -19,7 +19,7 @@ class User extends CI_Controller
 		$tahun 			= date('Y');
 		$bulan 			= date('m');
 		$hari 			= date('d');
-		$absen			= $this->user->absendaily($this->session->userdata('nip'), $tahun, $bulan, $hari);
+		$absen			= $this->user->absendaily($this->session->userdata('username'), $tahun, $bulan, $hari);
 		$data = [
 			'title' => 'Dashboard',
 			'page' => 'user/index',

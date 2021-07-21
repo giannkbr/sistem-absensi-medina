@@ -7,10 +7,10 @@ class User_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('absen');
-		$this->db->where('nip', $id);
-		$this->db->where('year(waktu)', $tahun);
-		$this->db->where('month(waktu)', $bulan);
-		$this->db->where('day(waktu)', $hari);
+		$this->db->where('username', $id);
+		$this->db->where('year(tanggal)', $tahun);
+		$this->db->where('month(tanggal)', $bulan);
+		$this->db->where('day(tanggal)', $hari);
 		return $this->db->get();
 	}
 }

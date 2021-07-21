@@ -19,7 +19,28 @@ class Absen_model extends CI_Model
 		$this->db->from('absen');
 		$this->db->join('users', 'absen.nip = users.nip');
 		$this->db->where('users.nip', $id);
+		$this->db->order_by('tanggal', 'desc');
 		return $this->db->get()->result();
+	}
+
+	public function getAbsenByusername($id)
+	{
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->join('users', 'absen.username = users.username');
+		$this->db->where('users.username', $id);
+		$this->db->order_by('tanggal', 'desc');
+		return $this->db->get()->result_array();
+	}
+
+	public function getAbsenByjabatan($id)
+	{
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->join('users', 'absen.username = users.username');
+		$this->db->where('users.jabatan_id', $id);
+		$this->db->order_by('tanggal', 'desc');
+		return $this->db->get()->result_array();
 	}
 
 	public function joinAbsen()
@@ -28,6 +49,7 @@ class Absen_model extends CI_Model
 		$this->db->from('absen');
 		$this->db->join('users', 'users.username = absen.username');
 		$this->db->join('jabatan', 'jabatan.jabatan_id = users.jabatan_id');
+		$this->db->order_by('tanggal', 'desc');
 		return $this->db->get();
 	}
 
@@ -50,7 +72,7 @@ class Absen_model extends CI_Model
 		$this->db->from('absen');
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
-
+		$this->db->where('username', $nama);
 		return $this->db->get();
 	}
 

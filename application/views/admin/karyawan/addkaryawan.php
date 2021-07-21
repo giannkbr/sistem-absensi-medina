@@ -35,13 +35,13 @@
 							<?= form_error('username', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
 					</div>
-					<!-- <div class="form-group row">
+					<div class="form-group row">
 						<label for="pwd" class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="password" id="password" name="password">
 							<?= form_error('password', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
-					</div> -->
+					</div>
 					<div class="form-group row">
 						<label for="jabataan" class="col-sm-2 col-form-label">Jabatan</label>
 						<div class="col-sm-10">
@@ -59,7 +59,7 @@
 						<div class="col-sm-10">
 							<select name="role_id" class="form-control">
 								<option value="" selected="" disabled="">Pilih Role</option>
-								<option value="1">Administrator</option>
+<!-- 								<option value="1">Administrator</option> -->
 								<option value="2">Karyawan</option>
 							</select>
 							<?= form_error('role_id', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>

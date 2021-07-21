@@ -7,7 +7,7 @@
 				<ul class="navigation-menu">
 
 					<li class="has-submenu">
-						<a href="/"><i class="icon-accelerator"></i> Dashboard</a>
+						<a href="<?= base_url('User') ?>"><i class="icon-accelerator"></i> Dashboard</a>
 					</li>
 
 					<li class="has-submenu">
@@ -15,22 +15,21 @@
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a href="<?= base_url('Absen/getAbsenId/' . $this->session->userdata('nip')) ?>">Data Absensi</a></li>
-									<li><a href="<?= base_url('data-overtime-karyawan'); ?>">Data Overtime</a></li>
-									<li><a href="<?= base_url('data-cuti-karyawan'); ?>">Data Cuti</a></li>
+									<li><a href="<?= base_url('Absen/getAbsenId/' . $this->session->userdata('username')) ?>">Data Absensi</a></li>
+									<li><a href="<?= base_url('Absen/cetakqr/' . $this->session->userdata('nip')) ?>">Cetak QR</a></li>
+
+
 								</ul>
 							</li>
 						</ul>
 					</li>
 					<li class="has-submenu">
-						<a href="#"><i class="icon-pencil-ruler"></i> Laporan <i class="mdi mdi-chevron-down mdi-drop"></i></a>
+						<a href="#"><i class="icon-pencil-ruler"></i> Rekap <i class="mdi mdi-chevron-down mdi-drop"></i></a>
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a href="<?= base_url('cetak-data-absensi'); ?>">Data Absensi</a></li>
-									<li><a href="<?= base_url('cetak-data-overtime'); ?>">Data Overtime</a></li>
-									<li><a href="<?= base_url('cetak-data-cuti'); ?>">Data Cuti</a></li>
-								</ul>
+									<li><a href="<?= base_url('Absen/rekapAbsensiPerKaryawan/'. $this->session->userdata('username')); ?>">Rekap Absensi</a></li>
+
 							</li>
 						</ul>
 					</li>

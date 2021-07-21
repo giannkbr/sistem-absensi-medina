@@ -7,6 +7,7 @@
 					<form method="post" class="col-sm-12 mb-2" action="<?= base_url('rekap-absensi-karyawan-filter') ?>">
 						<input type="date" name="awal" id="awal">
 						<input type="date" name="akhir" id="akhir">
+						<input type="text" name="username" value="<?= $this->uri->segment(3) ?>" hidden>
 						<input type="text" name="nama" value="<?= $nama ?>" hidden>
 
 						<button class="btn btn-primary" type="submit" formtarget="_blank"> Filter </button>

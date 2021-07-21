@@ -1,3 +1,17 @@
+
+<style type="text/css">
+	@media print {
+    #print-area{
+         position:absolute;
+         width:300px;
+         height:300px;
+         z-index:15;
+         top:50%;
+         left:50%;
+         margin:-150px 0 0 -150px;
+    }
+}
+</style>
 <div class="row">
 	<div class="col-12">
 		<div class="card m-b-30">
@@ -22,3 +36,16 @@
 		</div>
 	</div> <!-- end col -->
 </div> <!-- end row -->
+
+<script type="text/javascript">
+	function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+</script>

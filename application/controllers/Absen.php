@@ -41,7 +41,7 @@ class Absen extends CI_Controller
 			'page' => 'user/absensi/dataabsensi',
 			'subtitle' => 'User',
 			'subtitle2' => 'Data Absensi',
-			'data' => $this->absen->getAbsenById($id)
+			'data' => $this->absen->getAbsenByusername($id)
 		];
 
 		$this->load->view('templates/app', $data, FALSE);
@@ -60,7 +60,7 @@ class Absen extends CI_Controller
 		$this->load->view('templates/app', $data, FALSE);
 	}
 
-	public function detailRekapAbsensi()
+	public function detailRekapAbsensi($id)
 	{
 		$data = [
 			'title' => 'Rekap Absensi Perkaryawan',
@@ -69,7 +69,7 @@ class Absen extends CI_Controller
 			'subtitle2' => 'Rekap Absensi Perkaryawan',
 			'nama' => $this->uri->segment(3),
 			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
-			'data' => $this->karyawan->karyawanWhere(['jabatan_id' => $this->uri->segment(3)])->result_array()
+			'data' => $this->absen->getAbsenByjabatan($id)
 		];
 
 		$this->load->view('templates/app', $data, FALSE);
@@ -78,7 +78,7 @@ class Absen extends CI_Controller
 	public function rekapAbsensiPerKaryawan()
 	{
 		$data = [
-			'title' => 'Rekap Absensi Karyawan',
+			'title' => 'Rekap Absensi Karyawan ('.$this->uri->segment(3).')',
 			'page' => 'admin/absensi/rekapabsensiperkaryawan',
 			'subtitle' => 'Admin',
 			'subtitle2' => 'Rekap Absensi Karyawan',

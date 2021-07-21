@@ -54,7 +54,6 @@ class Absen extends CI_Controller
 			'page' => 'admin/absensi/rekapabsensi',
 			'subtitle' => 'Admin',
 			'subtitle2' => 'Rekap Absensi Perjabatan',
-			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
 			'data' =>  $this->karyawan->tampilDataJabatan()->result_array()
 		];
 

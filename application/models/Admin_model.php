@@ -28,6 +28,7 @@ class Admin_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from('users');
+		$this->db->where('role_id','2');
 		$this->db->join('jabatan', 'users.jabatan_id = jabatan.jabatan_id');
 		return $this->db->get();
 	}
@@ -83,6 +84,14 @@ class Admin_model extends CI_Model
 		$this->db->where('users.nip', $id);
 		$this->db->order_by('overtime.id_overtime', 'desc');
 		return $this->db->get();
+	}
+
+	public function menghitung_karyawan()
+	{
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('role_id','2');
+		return $this->db->count_all_results();
 	}
 }
 

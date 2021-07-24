@@ -34,7 +34,7 @@ class Karyawan extends CI_Controller
 			'required' => 'Nama Jabatan tidak boleh kosong.'
 		]);
 
-		if ($this->form_validation->run() == FALSE) {
+		if ($this->form_validation->run() == FALSE) {// kembali ke tampilan input lagi dan ada kalimat peringatn
 			$data = [
 				'title' => 'Tambah Data Jabatan',
 				'page' => 'admin/jabatan/addjabatan',
@@ -97,7 +97,7 @@ class Karyawan extends CI_Controller
 			'page' => 'admin/karyawan/datakaryawan',
 			'subtitle' => 'Admin',
 			'subtitle2' => 'Data karyawan',
-			'data' => $this->admin->karyawan()->result()
+			'data' => $this->admin->karyawan()->result()// utk menampilkan data2 karyawan
 		];
 
 		$this->load->view('templates/app', $data, FALSE);

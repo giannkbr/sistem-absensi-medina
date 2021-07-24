@@ -2,7 +2,7 @@
 	<div class="col-12">
 		<div class="card m-b-30">
 			<div class="card-body">
-				<form action="<?= base_url('Karyawan/editkaryawan/' . $detail->nip) ?>" method="post">
+				<form action="<?= base_url('Karyawan/editkaryawan/' . $detail->nip) ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="ganti_gambar" value="<?= $detail->photo ?>" name="ganti_gambar" class="form-control" placeholder="Pas Photo">
 					<div class="form-group row">
 						<label for="nip" class="col-sm-2 col-form-label">Nomer Induk Pegawai</label>

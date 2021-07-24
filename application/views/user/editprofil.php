@@ -2,7 +2,7 @@
 	<div class="col-12">
 		<div class="card m-b-30">
 			<div class="card-body">
-				<form action="<?= base_url('User/edituser/' . $detail->nip) ?>" method="post">
+				<form action="<?= base_url('User/edituser/' . $detail->nip) ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="ganti_gambar" value="<?= $detail->photo ?>" name="ganti_gambar" class="form-control" placeholder="Pas Photo">
 					
 					<div class="form-group row">

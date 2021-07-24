@@ -104,11 +104,7 @@ class User extends CI_Controller
 			];
 			$this->load->view('templates/app', $data);
 		} else {
-			$data = [
-				'nama' => $this->input->post('nama'),
-				'username' => $this->input->post('username'),
-				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-			];
+			
 
 			$oldPhoto = $this->input->post('ganti_gambar');
 			$path = './images/users/';
@@ -128,10 +124,17 @@ class User extends CI_Controller
 						redirect('User/edituser');
 					} else {
 						$newPhoto = $this->upload->data();
-						$data['photo'] = $newPhoto['file_name'];
+						$gbr = $newPhoto['file_name'];
 					}
 				}
 			}
+			$data = [
+				'nama' => $this->input->post('nama'),
+				'username' => $this->input->post('username'),
+				'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+				'photo' => $gbr
+			];
+
 			$this->user->editprofil($id, $data);
 			$this->session->set_flashdata('message', 'swal("Berhasil!", "Profil Berhasil Diubah!", "success");');
 

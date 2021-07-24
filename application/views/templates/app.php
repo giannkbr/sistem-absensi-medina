@@ -194,8 +194,8 @@
 	<script src="<?= base_url('assets/') ?>pages/datatables.init.js"></script>
 
 	<!-- sweetalert -->
-	<script src="<?php echo base_url('assets/') ?>alert.js"></script>
-	<?php echo "<script>" . $this->session->flashdata('message') . "</script>" ?>
+	<!-- <script src="<?php echo base_url('assets/') ?>alert.js"></script>
+	<?php echo "<script>" . $this->session->flashdata('message') . "</script>" ?> -->
 </body>
 
 </html>

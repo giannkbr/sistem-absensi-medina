@@ -30,7 +30,7 @@ class Karyawan extends CI_Controller
 	public function addjabatan()
 	{
 
-		$this->form_validation->set_rules('jabatan_nama', 'Nama Jabatan', 'required|trim', [
+		$this->form_validation->set_rules('jabatan_nama', 'Nama Jabatan', 'required|trim|is_unique[jabatan.jabatan_nama]', [
 			'required' => 'Nama Jabatan tidak boleh kosong.'
 		]);
 

@@ -62,11 +62,11 @@
 							<li class="dropdown notification-list list-inline-item">
 								<div class="dropdown notification-list nav-pro-img">
 									<a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-										<img src="<?= base_url('assets/') ?>images/users/user-4.jpg" alt="<?= $this->session->userdata('nama') ?>" class="rounded-circle">
+										<img src="<?= base_url('images/users/' . $this->session->userdata('photo')) ?>" alt="<?= $this->session->userdata('nama') ?>" class="rounded-circle">
 									</a>
 									<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 										<!-- item-->
-										<a href="#" class="dropdown-item">Hai, <?= $this->session->userdata('nama') ?></a>
+										<a href="<?= base_url('User/edituser/'.$this->session->userdata('nip') ) ?>" class="dropdown-item">Hai, <?= $this->session->userdata('nama') ?></a>
 										<!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle"></i>
 											Profile</a> -->
 										<!-- <a class="dropdown-item d-block" href="<?php base_url('auth/change_password') ?>"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings"></i> Settings</a> -->

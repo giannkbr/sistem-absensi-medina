@@ -17,10 +17,10 @@ class Jam extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title' => 'Data Absensi',
+			'title' => 'Data Jam',
 			'page' => 'admin/jam/datajam',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Data Absensi',
+			'subtitle2' => 'Data Jam',
 			'data' => $this->db->get('jam')->result_array()
 		];
 

@@ -13,6 +13,20 @@ class User_model extends CI_Model
 		$this->db->where('day(tanggal)', $hari);
 		return $this->db->get();
 	}
+
+	public function tampiluserwhere($id)
+	{
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('nip', $id);
+		return $this->db->get();
+	}
+
+	public function editprofil($id, $data)
+	{
+		$this->db->update('users', $data, ['nip' => $id]);
+		return $this->db->affected_rows();
+	}
 }
 
 /* End of file ModelName.php */

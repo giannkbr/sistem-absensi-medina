@@ -12,6 +12,7 @@
  							<th>Nomor</th>
  							<th>NIP</th>
  							<th>Nama Karyawan</th>
+                            <th>Username</th>
  							<th>Jabatan</th>
  							<th>Photo</th>
  							<th>Aksi</th>
@@ -26,6 +27,7 @@
  								<td><?= $no++ ?></td>
  								<td><?= ucfirst($users->nip) ?></td>
  								<td><?= ucfirst($users->nama) ?></td>
+                                <td><?= ucfirst($users->username) ?></td>
  								<td><?= ucfirst($users->jabatan_nama) ?></td>
  								<td> <small>Photo <a target="_blank" href="<?= base_url('images/users/' . $users->photo) ?>">Klik disini</a></small></td>
  								<td>

@@ -17,6 +17,8 @@
 								<ul>
 									<li><a href="<?= base_url('data-karyawan'); ?>">Data Karyawan</a></li>
 									<li><a href="<?= base_url('data-jabatan'); ?>">Data Jabatan</a></li>
+									<li><a href="<?= base_url('data-jam'); ?>">Data Jam</a></li>
+
 								</ul>
 							</li>
 						</ul>

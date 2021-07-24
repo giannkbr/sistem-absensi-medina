@@ -116,6 +116,7 @@ class Absen extends CI_Controller
 		$jam_klr = date('H:i:s');
 		$cek_id = $this->absen->cek_id($result_code);
 		$cek_kehadiran = $this->absen->cek_kehadiran($result_code, $tgl);
+		$jam = $this->db->get('jam')->row_array();
 
 	if (!$cek_id) {
             $this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
@@ -123,7 +124,7 @@ class Absen extends CI_Controller
 
         }
 
-         elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >='16:00:00' ) {
+         elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >=$jam['jam_keluar'] ) {
             $data = array(
                 'jam_keluar' => $jam_klr,
                 'status' => 'pulang',
@@ -137,7 +138,7 @@ class Absen extends CI_Controller
             redirect($_SERVER['HTTP_REFERER']);
             return false;
 
-        } elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') <='16:00:00') {
+        } elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') <= $jam['jam_keluar']) {
             $this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
             redirect($_SERVER['HTTP_REFERER']);
             return false;
@@ -157,7 +158,7 @@ class Absen extends CI_Controller
 
     
         else {
-            if (date('H:i:s') >= '09:00:00') {
+            if (date('H:i:s') >= $jam['toleransi_masuk']) {
             $alert = 'Absen terlambat';
             
             $data = array(

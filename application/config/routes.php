@@ -71,3 +71,6 @@ $route['rekap-absensi-karyawan-filter'] = 'Absen/rekapAbsensiPerOrangFilter';
 $route['scan-qr-code'] = 'Absen/scanqr';
 $route['ambil-qr-code'] = 'Absen/ambilqr';
 $route['cetak-qr-code'] = 'Absen/cetakqr';
+
+//master jam
+$route['data-jam'] = 'Jam';

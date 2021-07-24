@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 15, 2021 at 07:07 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Host: 127.0.0.1
+-- Generation Time: Jul 24, 2021 at 03:19 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -41,40 +42,15 @@ CREATE TABLE `absen` (
 --
 
 INSERT INTO `absen` (`id_absen`, `username`, `tanggal`, `jam_masuk`, `jam_keluar`, `status`) VALUES
-(1, 'norman', '2021-06-14', '22:17:51', '22:18:01', 'pulang');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detailovertime`
---
-
-CREATE TABLE `detailovertime` (
-  `id_detail` int(11) NOT NULL,
-  `id_overtime` int(11) NOT NULL,
-  `tanggal` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detailovertime`
---
-
-INSERT INTO `detailovertime` (`id_detail`, `id_overtime`, `tanggal`) VALUES
-(26, 6, '2021-05-22'),
-(27, 6, '2021-05-23'),
-(28, 6, '2021-05-24'),
-(29, 6, '2021-05-25'),
-(30, 6, '2021-05-26'),
-(31, 6, '2021-05-27'),
-(32, 6, '2021-05-28'),
-(33, 6, '2021-05-29'),
-(34, 6, '2021-05-30'),
-(35, 6, '2021-05-31'),
-(36, 6, '2021-06-01'),
-(37, 6, '2021-06-02'),
-(38, 7, '2021-06-02'),
-(39, 8, '2021-06-02'),
-(40, 9, '2021-06-02');
+(1, 'kiki', '2021-06-01', '08:10:29', '16:13:39', 'pulang'),
+(2, 'kiki', '2021-06-02', '08:10:29', '16:13:39', 'pulang'),
+(3, 'kiki', '2021-06-03', '08:10:29', '16:13:39', 'pulang'),
+(4, 'kiki', '2021-06-04', '08:10:29', '16:13:39', 'pulang'),
+(5, 'kiki', '2021-06-05', '08:10:29', '16:13:39', 'pulang'),
+(6, 'kiki', '2021-06-06', '08:10:29', '16:13:39', 'pulang'),
+(7, 'kiki', '2021-07-21', '15:44:40', '00:00:00', 'terlambat'),
+(8, 'kaikai', '2021-07-22', '01:32:26', '00:00:00', 'masuk'),
+(13, 'kaikai', '2021-07-24', '08:12:57', '00:00:00', 'masuk');
 
 -- --------------------------------------------------------
 
@@ -99,28 +75,22 @@ INSERT INTO `jabatan` (`jabatan_id`, `jabatan_nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setting`
+-- Table structure for table `jam`
 --
 
-CREATE TABLE `setting` (
-  `status_setting` int(1) NOT NULL DEFAULT 0,
-  `nama_instansi` varchar(255) NOT NULL,
-  `jumbotron_lead_set` varchar(125) NOT NULL,
-  `nama_app_absensi` varchar(20) NOT NULL DEFAULT 'Absensi Online',
-  `logo_instansi` varchar(255) NOT NULL,
-  `timezone` varchar(35) NOT NULL,
-  `absen_mulai` varchar(13) NOT NULL,
-  `absen_mulai_to` varchar(13) NOT NULL,
-  `absen_pulang` varchar(13) NOT NULL,
-  `maps_use` int(1) NOT NULL
+CREATE TABLE `jam` (
+  `id_jam` int(11) NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL,
+  `toleransi_masuk` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `setting`
+-- Dumping data for table `jam`
 --
 
-INSERT INTO `setting` (`status_setting`, `nama_instansi`, `jumbotron_lead_set`, `nama_app_absensi`, `logo_instansi`, `timezone`, `absen_mulai`, `absen_mulai_to`, `absen_pulang`, `maps_use`) VALUES
-(1, '[Ubah Nama Instansi]', '[Ubah Text Berjalan Halaman Depan Disini Pada Setting Aplikasi]', 'Absensi Online', 'default-logo.png', 'Asia/Jakarta', '06:00:00', '11:00:00', '16:00:00', 0);
+INSERT INTO `jam` (`id_jam`, `jam_masuk`, `jam_keluar`, `toleransi_masuk`) VALUES
+(1, '08:00:00', '16:00:00', '09:00:00');
 
 -- --------------------------------------------------------
 
@@ -146,8 +116,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`nip`, `nama`, `jenis_kelamin`, `username`, `password`, `role_id`, `photo`, `jabatan_id`, `waktu_masuk`) VALUES
 (123, 'Administrator', 'L', 'admin', '$2y$10$VqvV0UfbaEhwfR0v1nQUOOz0SY461B3Q41cwaHiqocwfN5uG9lUge', '1', 'default.png', 10, '2021-05-10'),
-(2313, 'Gian Akbar', 'L', 'gian', '$2y$10$VqvV0UfbaEhwfR0v1nQUOOz0SY461B3Q41cwaHiqocwfN5uG9lUge', '2', 'default.png', 10, '2019-04-09'),
-(12312, 'Teman tugas', 'P', 'adminku12@gmail.com', '$2y$10$ekUM4T50kyYteL/Hc.REReeSR0HNR8sKicQQFqmgrspfyBUqXTBz6', '2', '1068538.jpg', 12, '2021-06-20');
+(12312, 'Kiki', 'L', 'kikiaja', '$2y$10$ekUM4T50kyYteL/Hc.REReeSR0HNR8sKicQQFqmgrspfyBUqXTBz6', '2', '1068538.jpg', 1, '2021-06-20'),
+(234565, 'kiki salam ruzki', 'L', 'kiki', '$2y$10$K4vt9LlHiz7/9jdpeyZcp.9sA8HGQYDqTGEyC.a9pVZmbGVgb8jdy', '2', 'Capture.PNG', 1, '2021-06-26'),
+(56764321, 'kaikai', 'L', 'kaikai', '$2y$10$.EOTR55lIHa9m1l2TrA0aePBiIEn5TtTqQuQLwC0P5sqi5RC/ijbG', '2', 'Sketchpad.png', 11, '2021-07-21');
 
 --
 -- Indexes for dumped tables
@@ -160,16 +131,16 @@ ALTER TABLE `absen`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `detailovertime`
---
-ALTER TABLE `detailovertime`
-  ADD PRIMARY KEY (`id_detail`);
-
---
 -- Indexes for table `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`jabatan_id`);
+
+--
+-- Indexes for table `jam`
+--
+ALTER TABLE `jam`
+  ADD PRIMARY KEY (`id_jam`);
 
 --
 -- Indexes for table `users`
@@ -185,19 +156,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `detailovertime`
---
-ALTER TABLE `detailovertime`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
   MODIFY `jabatan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `jam`
+--
+ALTER TABLE `jam`
+  MODIFY `id_jam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

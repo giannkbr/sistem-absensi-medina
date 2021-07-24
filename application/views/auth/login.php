@@ -90,8 +90,8 @@
 
 	<!-- App js -->
 	<script src="<?= base_url('assets/') ?>js/app.js"></script>
-	<script src="<?php echo base_url('assets/') ?>alert.js"></script>
-	<?php echo "<script>" . $this->session->flashdata('message') . "</script>" ?>
+	<!-- <script src="<?php echo base_url('assets/') ?>alert.js"></script>
+	<?php echo "<script>" . $this->session->flashdata('message') . "</script>" ?> -->
 </body>
 
 </html>

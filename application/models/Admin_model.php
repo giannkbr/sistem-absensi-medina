@@ -93,6 +93,14 @@ class Admin_model extends CI_Model
 		$this->db->where('role_id','2');
 		return $this->db->count_all_results();
 	}
+
+	public function absenhariini()
+	{
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->where('tanggal',date('Y-m-d'));
+		return $this->db->count_all_results();
+	}
 }
 
 /* End of file ModelName.php */

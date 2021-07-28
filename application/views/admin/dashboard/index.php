@@ -14,6 +14,20 @@
 		</div>
 	</div>
 
+	<div class="col-sm-12 col-xl-12">
+		<div class="card">
+			<div class="card-heading p-4">
+				<div class="mini-stat-icon float-right">
+					<i class="mdi mdi-cube-outline bg-primary  text-white"></i>
+				</div>
+				<div>
+					<h5 class="font-16">Jumlah Karyawan Melakukan Absen Hari Ini (<?= date('d-m-Y') ?>)</h5>
+				</div>
+				<h3 class="mt-4"><?= $absenhariini ?></h3>
+			</div>
+		</div>
+	</div>
+
 	<!-- <div class="col-sm-6 col-xl-3">
 		<div class="card">
 			<div class="card-heading p-4">

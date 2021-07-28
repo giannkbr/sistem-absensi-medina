@@ -22,6 +22,7 @@ class Admin extends CI_Controller
 			'subtitle' => 'Dashboard',
 			'subtitle2' => 'Index',
 			'karyawan' => $this->admin->menghitung_karyawan(),
+			'absenhariini' => $this->admin->absenhariini(),
 		];
 
 		$this->load->view('templates/app', $data);

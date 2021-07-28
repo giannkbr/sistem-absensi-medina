@@ -57,10 +57,9 @@
 					<div class="form-group row">
 						<label for="role_id" class="col-sm-2 col-form-label">Role Akun</label>
 						<div class="col-sm-10">
-							<select name="role_id" class="form-control">
-								<option value="" selected="" disabled="">Pilih Role</option>
+							<select name="role_id" class="form-control" readonly>
 <!-- 								<option value="1">Administrator</option> -->
-								<option value="2">Karyawan</option>
+								<option value="2" selected="selected">Karyawan</option>
 							</select>
 							<?= form_error('role_id', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>

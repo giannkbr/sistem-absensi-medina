@@ -16,10 +16,9 @@ class User extends CI_Controller
 
 	public function index()
 	{
-		$tahun 			= date('Y');
-		$bulan 			= date('m');
-		$hari 			= date('d');
-		$absen			= $this->user->absendaily($this->session->userdata('username'), $tahun, $bulan, $hari);
+		$tanggal = date('Y-m-d');
+		$absen			= $this->user->cekabsen($this->session->userdata('username'), $tanggal)->row_array();
+		$num = $this->user->cekabsen($this->session->userdata('username'), $tanggal);
 		$data = [
 			'title' => 'Dashboard',
 			'page' => 'user/index',
@@ -28,12 +27,15 @@ class User extends CI_Controller
 			'users' => $this->db->get('users')->result(),
 		];
 
-		if ($absen->num_rows() == 0) {
-			$data['waktu'] = 'masuk';
-		} elseif ($absen->num_rows() == 1) {
-			$data['waktu'] = 'pulang';
-		} else {
-			$data['waktu'] = 'dilarang';
+		if ($num->num_rows() == 0) {
+			$data['waktu'] = 'Anda hari ini belum melakukan absen masuk';
+		} elseif ($absen['status'] == 'masuk') {
+			$data['waktu'] = 'Anda hari ini belum melakukan absen pulang';
+		} elseif ($absen['status'] == 'terlambat') {
+			$data['waktu'] = 'Anda hari ini belum melakukan absen pulang';
+
+		}elseif ($absen['status'] == 'pulang') {
+			$data['waktu'] = 'Anda telah melakukan absen masuk dan pulang';
 		}
 
 		$this->load->view('templates/app', $data);

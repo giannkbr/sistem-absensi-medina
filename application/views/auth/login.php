@@ -65,15 +65,7 @@
 						</div>
 					</div>
 
-					<div class="form-group row m-t-30 m-b-0">
-						<div class="col-sm-7">
-							<a href="<?php base_url('auth/change_password') ?>" class="text-muted"><i class="fa fa-lock m-r-5"></i> Forgot
-								your password?</a>
-						</div>
-						<div class="col-sm-5 text-right">
-							<a href="pages-register.html" class="text-muted">Create an account</a>
-						</div>
-					</div>
+				
 				</form>
 			</div>
 

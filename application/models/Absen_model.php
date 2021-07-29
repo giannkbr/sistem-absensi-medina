@@ -61,7 +61,11 @@ class Absen_model extends CI_Model
 
 	public function absenWhere($where)
 	{
-		return $this->db->get_where('absen', $where);
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->where('username', $where);
+		$this->db->order_by('tanggal', 'desc');
+		return $this->db->get();
 	}
 
 	public function whereTanggal($awal, $akhir, $nama)
@@ -73,6 +77,7 @@ class Absen_model extends CI_Model
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
 		$this->db->where('username', $nama);
+		
 		return $this->db->get();
 	}
 

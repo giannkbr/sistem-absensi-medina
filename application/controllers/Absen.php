@@ -84,7 +84,7 @@ class Absen extends CI_Controller
 			'subtitle2' => 'Rekap Absensi Karyawan',
 			'nama' => $this->uri->segment(3),
 			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
-			'data' => $this->absen->absenWhere(['username' => $this->uri->segment(3)])->result_array()
+			'data' => $this->absen->absenWhere($this->uri->segment(3))->result_array()
 		];
 
 		$this->load->view('templates/app', $data);

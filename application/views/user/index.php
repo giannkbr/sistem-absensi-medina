@@ -10,12 +10,7 @@
 				<div class="card-body">
 					<div class="form-group row">
 						<div class="col-sm-10">
-							<?php if ($waktu != 'dilarang') { ?>
-								<h4>Hai, <?= $this->session->userdata('nama') ?> Anda hari ini belum melakukan absen <b><?= $waktu ?></b>.
-									<input type="hidden" name="ket" id="ket" value="<?= $waktu ?>">
-								<?php } else { ?>
-									<h4>Hai, <?= $this->session->userdata('nama') ?> anda hari ini sudah melakukan absensi <b>Masuk</b> dan <b>Pulang</b></h4>
-								<?php }  ?>
+						<h4> Hai  <?=$this->session->userdata('nama') . ', ' . $waktu ?></h4>
 						</div>
 					</div>
 					

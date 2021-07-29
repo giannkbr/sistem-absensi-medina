@@ -27,6 +27,16 @@ class User_model extends CI_Model
 		$this->db->update('users', $data, ['nip' => $id]);
 		return $this->db->affected_rows();
 	}
+
+
+	public function cekabsen($id, $tanggal)
+	{
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->where('username', $id);
+		$this->db->where('tanggal', $tanggal);
+		return $this->db->get();
+	}
 }
 
 /* End of file ModelName.php */

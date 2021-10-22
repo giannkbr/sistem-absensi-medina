@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2021 at 03:19 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Waktu pembuatan: 22 Okt 2021 pada 08.12
+-- Versi server: 10.4.20-MariaDB
+-- Versi PHP: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absen`
+-- Struktur dari tabel `absen`
 --
 
 CREATE TABLE `absen` (
@@ -38,7 +37,7 @@ CREATE TABLE `absen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `absen`
+-- Dumping data untuk tabel `absen`
 --
 
 INSERT INTO `absen` (`id_absen`, `username`, `tanggal`, `jam_masuk`, `jam_keluar`, `status`) VALUES
@@ -50,12 +49,15 @@ INSERT INTO `absen` (`id_absen`, `username`, `tanggal`, `jam_masuk`, `jam_keluar
 (6, 'kiki', '2021-06-06', '08:10:29', '16:13:39', 'pulang'),
 (7, 'kiki', '2021-07-21', '15:44:40', '00:00:00', 'terlambat'),
 (8, 'kaikai', '2021-07-22', '01:32:26', '00:00:00', 'masuk'),
-(13, 'kaikai', '2021-07-24', '08:12:57', '00:00:00', 'masuk');
+(13, 'kaikai', '2021-07-24', '08:12:57', '00:00:00', 'masuk'),
+(14, 'kiki', '2021-07-24', '21:04:02', '00:00:00', 'terlambat'),
+(15, 'kiki', '2021-07-28', '19:55:51', '19:56:30', 'pulang'),
+(17, 'kiki', '2021-07-29', '16:33:19', '16:34:30', 'pulang');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jabatan`
+-- Struktur dari tabel `jabatan`
 --
 
 CREATE TABLE `jabatan` (
@@ -64,18 +66,19 @@ CREATE TABLE `jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jabatan`
+-- Dumping data untuk tabel `jabatan`
 --
 
 INSERT INTO `jabatan` (`jabatan_id`, `jabatan_nama`) VALUES
 (1, 'Barang dan Jasa Keuangan'),
 (11, 'Keuangan'),
-(12, 'Testing');
+(12, 'Testing'),
+(13, 'sekretaris');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jam`
+-- Struktur dari tabel `jam`
 --
 
 CREATE TABLE `jam` (
@@ -86,7 +89,7 @@ CREATE TABLE `jam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jam`
+-- Dumping data untuk tabel `jam`
 --
 
 INSERT INTO `jam` (`id_jam`, `jam_masuk`, `jam_keluar`, `toleransi_masuk`) VALUES
@@ -95,7 +98,7 @@ INSERT INTO `jam` (`id_jam`, `jam_masuk`, `jam_keluar`, `toleransi_masuk`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -111,61 +114,59 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`nip`, `nama`, `jenis_kelamin`, `username`, `password`, `role_id`, `photo`, `jabatan_id`, `waktu_masuk`) VALUES
 (123, 'Administrator', 'L', 'admin', '$2y$10$VqvV0UfbaEhwfR0v1nQUOOz0SY461B3Q41cwaHiqocwfN5uG9lUge', '1', 'default.png', 10, '2021-05-10'),
-(12312, 'Kiki', 'L', 'kikiaja', '$2y$10$ekUM4T50kyYteL/Hc.REReeSR0HNR8sKicQQFqmgrspfyBUqXTBz6', '2', '1068538.jpg', 1, '2021-06-20'),
-(234565, 'kiki salam ruzki', 'L', 'kiki', '$2y$10$K4vt9LlHiz7/9jdpeyZcp.9sA8HGQYDqTGEyC.a9pVZmbGVgb8jdy', '2', 'Capture.PNG', 1, '2021-06-26'),
-(56764321, 'kaikai', 'L', 'kaikai', '$2y$10$.EOTR55lIHa9m1l2TrA0aePBiIEn5TtTqQuQLwC0P5sqi5RC/ijbG', '2', 'Sketchpad.png', 11, '2021-07-21');
+(234565, 'kiki salam ruzkii', 'L', 'kiki', '$2y$10$K4vt9LlHiz7/9jdpeyZcp.9sA8HGQYDqTGEyC.a9pVZmbGVgb8jdy', '2', NULL, 1, '2021-06-26');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `absen`
+-- Indeks untuk tabel `absen`
 --
 ALTER TABLE `absen`
   ADD PRIMARY KEY (`id_absen`);
 
 --
--- Indexes for table `jabatan`
+-- Indeks untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`jabatan_id`);
 
 --
--- Indexes for table `jam`
+-- Indeks untuk tabel `jam`
 --
 ALTER TABLE `jam`
   ADD PRIMARY KEY (`id_jam`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`nip`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `absen`
+-- AUTO_INCREMENT untuk tabel `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `jabatan`
+-- AUTO_INCREMENT untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `jabatan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `jabatan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `jam`
+-- AUTO_INCREMENT untuk tabel `jam`
 --
 ALTER TABLE `jam`
   MODIFY `id_jam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
